@@ -17,7 +17,7 @@ export function Login(){
             alert("All fields are mandatory");
             return;
         }
-        const res = await fetch('user/Logincheck', {
+        const res = await fetch('https://localhost:7275/api/login', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
