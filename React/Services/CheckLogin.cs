@@ -23,7 +23,7 @@ namespace React.Services
             {
                 return false;
             }
-            var result = user.First();
+            var result = user.FirstOrDefault();
             Console.WriteLine(result);
             if (result == null)
             {

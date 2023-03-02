@@ -4,6 +4,6 @@ namespace React.Services
 {
     public interface IAddUser
     {
-        Task AddNewUserAsync(NewUser newUser);
+        Task<bool> AddNewUserAsync(NewUser newUser);
     }
 }

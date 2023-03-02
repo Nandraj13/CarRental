@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using React.Entities;
 
 namespace React.Services
@@ -14,9 +15,16 @@ namespace React.Services
 
         }
 
-        public async Task AddNewUserAsync(NewUser newUser)
+        public async Task<bool> AddNewUserAsync(NewUser newUser)
         {
-            await _collection.InsertOneAsync(newUser);
+            var user = _collection.Find(i=>i.Email== newUser.Email).FirstOrDefault();
+            if (user == null)
+            {
+                await _collection.InsertOneAsync(newUser);
+                return true;
+            }
+            return false;
+            
         }
     }
 }

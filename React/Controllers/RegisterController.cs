@@ -24,8 +24,12 @@ namespace React.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewUSerAsync(NewUser newUser)
         {
-            await _addUser.AddNewUserAsync(newUser);
-            return Ok();
+            Random r=new Random();
+            newUser._id= r.Next();
+            var res=await _addUser.AddNewUserAsync(newUser);
+            if(res==true)
+                return Ok();
+            return BadRequest();
         }
     }
 }

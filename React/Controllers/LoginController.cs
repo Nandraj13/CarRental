@@ -34,7 +34,7 @@ namespace React.Controllers
                 {
                     return Ok();
                 }    
-                return BadRequest(result);
+                return NotFound(result);
             }
         }
     }
