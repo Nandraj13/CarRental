@@ -90,7 +90,7 @@ export function Registration() {
                                         <div class="form-outline mb-4 col-sm-11">
                                             <input onChange={handleContact} type="text" class="form-control" value={Contact} placeholder="Contact" required maxLength="10" minLength="10" />
                                         </div>
-                                        <input onClick={handleSubmit} type="Button" class="btn btn-primary btn-block mb-2" value="Register" />
+                                        <input onClick={handleSubmit} type="Button" class="btn btn-theme" value="Register" />
 
 
                                     </div>
