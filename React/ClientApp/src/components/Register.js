@@ -55,29 +55,69 @@ export function Registration() {
             alert("Email Already Registered");
         }
     }
+    const goToLogin = () => {
+        window.location.replace("https://localhost:44475/Login");
+    }
     
-        return (
+    return (
 
-            <div height='100%' width='100%'>
-                <h1>Registration</h1>
+        <div id="main-wrapper" class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="card border-0">
+                        <div class="card-body p-0">
+                            <div class="row no-gutters">
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="mb-5">
+                                            <h3 class="h4 font-weight-bold text-theme">Register</h3>
+                                        </div>
 
-                
-                    <div class="form-outline mb-4 col-sm-7">
-                        <input onChange={handleUsername} type="text" class="form-control" value={Username} placeholder="Username" required="required" />
+                                        <h6 class="h5 mb-0">Hey,Welcome</h6>
+                                        <p class="mt-2 mb-5">Register yourself to book your dream car</p>
+
+
+                                        <div class="form-outline mb-4 col-sm-11">
+                                            <input onChange={handleUsername} type="text" class="form-control" value={Username} placeholder="Username" required="required" />
+                                        </div>
+                                        <div class="form-outline mb-4 col-sm-11">
+                                            <input onChange={handlePassword} type="password" class="form-control" value={Password} placeholder="Password" required min="8" />
+                                        </div>
+                             
+                                        <div class="form-outline mb-4 col-sm-11">
+                                            <input onChange={handleEmail} type="email" class="form-control" value={Email} placeholder="Email Address" required />
+                                        </div>
+                                        <div class="form-outline mb-4 col-sm-11">
+                                            <input onChange={handleContact} type="text" class="form-control" value={Contact} placeholder="Contact" required maxLength="10" minLength="10" />
+                                        </div>
+                                        <input onClick={handleSubmit} type="Button" class="btn btn-primary btn-block mb-2" value="Register" />
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 d-none d-lg-inline-block">
+                                    <div class="account-block rounded-right">
+                                        <div class="overlay rounded-right"></div>
+                                        <div class="account-testimonial">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
-                    <div class="form-outline mb-4 col-sm-7">
-                        <input onChange={handlePassword} type="password" class="form-control" value={Password} placeholder="Password" required min="8" />
+
+
+                    <p class="text-muted text-center mt-3 mb-0">Already have an account? <a onClick={goToLogin} class="text-primary ml-1">Login</a></p>
+
+
                 </div>
-                <img src={image} height="500px" width="500px" style={{ float: 'right', marginTop: "-240px", marginRight: "-60px" }} />
-                {/*<h4 style={{ float: 'right', marginRight: "-420px", marginTop: "170px" }}>Book Your Dream Vehicle Now</h4>*/}
-                    <div class="form-outline mb-4 col-sm-7">
-                        <input onChange={handleEmail} type="email" class="form-control" value={Email} placeholder="Email Address" required />
-                    </div>
-                    <div class="form-outline mb-4 col-sm-7">
-                        <input onChange={handleContact} type="text" class="form-control" value={Contact} placeholder="Contact" required maxLength="10" minLength="10" />
-                    </div>
-                    <input onClick={handleSubmit} type="Button" class="btn btn-primary btn-block mb-2" value="Register" />
-               
+
             </div>
-        )
+
+        </div>
+    );
     }

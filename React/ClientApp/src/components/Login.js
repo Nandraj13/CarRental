@@ -1,6 +1,5 @@
 ﻿import React, { Component, useState } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import image from './Images/205.jpg';
+import './login.css';
 export function Login() {
 
     const [Password, setPassword] = useState('');
@@ -39,20 +38,61 @@ export function Login() {
             alert("Invalid email or password");
         }
     }
+    const goToRegistration = () => {
+        window.location.replace("https://localhost:44475/Registration");
+    }
     return (
-        <div>
-            <h1>Login</h1>
-            <form action="ValidateLogin" method="post">
-                <div class="form-outline mb-4 col-sm-7">
-                    <input onChange={handleEmail} value={Email} type="email" class="form-control" placeholder="Email Address" required />
+
+        <div id="main-wrapper" class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="card border-0">
+                        <div class="card-body p-0">
+                            <div class="row no-gutters">
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="mb-5">
+                                            <h3 class="h4 font-weight-bold text-theme">Login</h3>
+                                        </div>
+
+                                        <h6 class="h5 mb-0">Welcome back!</h6>
+                                        <p class="mt-2 mb-5">Enter your email address and password to continue</p>
+
+                                       
+                                        <div class="form-outline mb-4 col-sm-11">
+                                            <input onChange={handleEmail} value={Email} type="email" class="form-control" placeholder="Email Address" required />
+                                        </div>
+                                        <div class="form-outline mb-4 col-sm-11">
+                                            <input onChange={handlePassword} value={Password} type="password" class="form-control" placeholder="Password" required />
+                                        </div>
+                                            <button onClick={handleSubmit} type="submit" class="btn btn-theme">Login</button>
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 d-none d-lg-inline-block">
+                                    <div class="account-block rounded-right">
+                                        <div class="overlay rounded-right"></div>
+                                        <div class="account-testimonial">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a onClick={goToRegistration} class="text-primary ml-1">register</a></p>
+
+
                 </div>
-                <img src={image} height="500px" width="500px" style={{ float: 'right', marginTop: "-180px", marginRight: "-60px" }} />
-                <div class="form-outline mb-4 col-sm-7">
-                    <input onChange={handlePassword} value={Password} type="password" class="form-control" placeholder="Password" required />
-                </div>
-                <input onClick={handleSubmit} type="Button" class="btn btn-primary btn-block mb-2" value="Sign in" />
-            </form>
+
+            </div>
+
         </div>
-    )
+    );
 
 }
