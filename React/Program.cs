@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using React.DbContextt;
+using MongoDB.Driver;
+using React.Entities;
+using React.Services;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
-builder.Services.AddDbContext<ApplicationContext>(op => op.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True"));
+
+//MongoDB Configs
+var services = builder.Services;
+var connectionString = "mongodb://localhost:27017";
+var client = new MongoClient(connectionString);
+services.AddSingleton<IMongoClient>(client);
+services.AddScoped<IAddUser>(provider =>
+        new AddUser(provider.GetService<IMongoClient>()));
+services.AddScoped<ICheckLogin>(provider=>
+       new CheckLogin(provider.GetService<IMongoClient>()));
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 
 
 
@@ -24,6 +37,13 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+
+// global cors policy
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) // allow any origin
+    .AllowCredentials()); // allow credentials
 
 app.MapControllerRoute(
     name: "default",
