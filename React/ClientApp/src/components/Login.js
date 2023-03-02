@@ -1,6 +1,6 @@
-﻿import React, { Component,useState } from 'react';
+﻿import React, { Component, useState } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-export function Login(){
+export function Login() {
 
     const [Password, setPassword] = useState('');
     const [Email, setEmail] = useState('');
@@ -37,25 +37,19 @@ export function Login(){
             alert("Invalid email or password");
         }
     }
-        return (
-            <div>
-           <h1>Login</h1>
-    <form action="ValidateLogin" method="post">
+    return (
+        <div>
+            <h1>Login</h1>
+            <form action="ValidateLogin" method="post">
+                <div class="form-outline mb-4 col-sm-7">
+                    <input onChange={handleEmail} value={Email} type="email" class="form-control" placeholder="Email Address" required />
+                </div>
+                <div class="form-outline mb-4 col-sm-7">
+                    <input onChange={handlePassword} value={Password} type="password" class="form-control" placeholder="Password" required />
+                </div>
+                <input onClick={handleSubmit} type="Button" class="btn btn-primary btn-block mb-2" value="Sign in" />
+            </form>
+        </div>
+    )
 
-                    <div class="form-outline mb-4 col-sm-7">
-                        <input onChange={handleEmail} value={Email} type="email" class="form-control" placeholder="Email Address" required />
-    </div>
-
-
-                    <div class="form-outline mb-4 col-sm-7">
-                        <input onChange={handlePassword} value={Password} type="password" class="form-control" placeholder="Password" required />
-    </div>
-
-
-                    <input onClick={handleSubmit} type="Button"class="btn btn-primary btn-block mb-2" value="Sign in" />
-    </form>
-              
-     </div>
-        )
-
-    }
+}
