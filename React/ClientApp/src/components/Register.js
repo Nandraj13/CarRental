@@ -30,7 +30,7 @@ export function Registration() {
             alert("All fields are mandatory");
             return;
         }
-        const res = await fetch('user', {
+        const res = await fetch("https://localhost:7275/api/Register", {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
