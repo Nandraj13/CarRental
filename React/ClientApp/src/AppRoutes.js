@@ -3,6 +3,8 @@ import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
 import { Registration } from "./components/Register";
+import { AdminHome } from "./components/AdminHome";
+import { AddVehicles } from "./components/AddVehicles";
 
 const AppRoutes = [
   {
@@ -25,6 +27,14 @@ const AppRoutes = [
     {
         path: '/Registration',
         element: <Registration/>
+    },
+    {
+        path: '/AdminHome',
+        element:<AdminHome/>
+    },
+    {
+        path: '/AddVehicles',
+        element: <AddVehicles/>
     }
 ];
 

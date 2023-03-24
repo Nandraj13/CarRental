@@ -17,6 +17,7 @@ var client = new MongoClient(connectionString);
 services.AddSingleton<IMongoClient>(client);
 services.AddScoped<IAddUser>(provider =>
         new AddUser(provider.GetService<IMongoClient>()));
+services.AddScoped<IAddVehicle>(provider=>new AddVehicle(provider.GetService<IMongoClient>()));
 services.AddScoped<ICheckLogin>(provider=>
        new CheckLogin(provider.GetService<IMongoClient>()));
 builder.Services.AddControllers();
