@@ -5,6 +5,8 @@ import { Login } from "./components/Login";
 import { Registration } from "./components/Register";
 import { AdminHome } from "./components/AdminHome";
 import { AddVehicles } from "./components/AddVehicles";
+import { UserHome } from "./components/UserHome";
+import { YourVehicles } from "./components/YourVehicles";
 
 const AppRoutes = [
   {
@@ -35,6 +37,14 @@ const AppRoutes = [
     {
         path: '/AddVehicles',
         element: <AddVehicles/>
+    },
+    {
+        path: '/UserHome',
+        element: <UserHome/>
+    },
+    {
+        path: '/YourVehicles',
+        element: <YourVehicles/>
     }
 ];
 

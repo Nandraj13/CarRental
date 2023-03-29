@@ -2,8 +2,9 @@
 
 namespace React.Services
 {
-    public interface IAddVehicle
+    public interface IManageVehicle
     {
         Task<bool> AddNewVehicleAsync(Vehicle vehicle);
+        Task<List<Vehicle>> GetVehicleByUserEmailAsync(string UserEmail);
     }
 }

@@ -26,9 +26,9 @@ namespace React.Controllers
             {
                 Console.WriteLine(loginDetails);
                 
-                var check=_checkLogin.CheckForLogin(loginDetails);
-                check.Wait();
-                bool result = check.Result;
+                var check=await _checkLogin.CheckForLogin(loginDetails);
+
+                bool result = check;
                 Console.WriteLine(result);
                 if(result==true)
                 {

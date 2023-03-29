@@ -14,6 +14,8 @@ namespace React.Entities
         [Required] 
         public string Image { get;set; }
         [Required]
+        public string RCImage { get; set; }
+        [Required]
         public string Capacity { get; set; }
         [Required]
         public string RGnumber { get; set; }
@@ -21,5 +23,9 @@ namespace React.Entities
         public string RentPerHour { get; set; }
         [Required]
         public string FuelType { get; set; }
+        [Required]
+        public bool Approved { get; set; }
+        [Required]
+        public string UserEmailId { get; set; }
     }
 }

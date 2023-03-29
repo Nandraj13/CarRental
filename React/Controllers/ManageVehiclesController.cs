@@ -9,21 +9,27 @@ namespace React.Controllers
     [ApiController]
     public class ManageVehiclesController : ControllerBase
     {
-        private readonly IAddVehicle addVehicle;
-        public ManageVehiclesController(IAddVehicle _addVehicle)
+        private readonly IManageVehicle Vehicle;
+        public ManageVehiclesController(IManageVehicle _Vehicle)
         {         
-           addVehicle = _addVehicle;
+           Vehicle = _Vehicle;
         }
         [HttpPost]
         public async Task<IActionResult> AddVehicle(Vehicle vehicle)
         {
-            var result=addVehicle.AddNewVehicleAsync(vehicle);
-            if(result.GetAwaiter().GetResult()==true)
+            var result=await Vehicle.AddNewVehicleAsync(vehicle);
+            if(result==true)
             {
                 return Ok();
             }
             return BadRequest();
 
+        }
+        [HttpGet("{email}")]
+        public async Task<List<Vehicle>> GetVehicleByUserEmail(string email)
+        {
+            var result=await Vehicle.GetVehicleByUserEmailAsync(email);
+            return result;
         }
     }
 }

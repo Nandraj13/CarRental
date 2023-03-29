@@ -3,11 +3,11 @@ using React.Entities;
 
 namespace React.Services
 {
-    public class AddVehicle : IAddVehicle
+    public class ManageVehicle : IManageVehicle
     {
         public readonly IMongoCollection<Vehicle> _collection;
 
-        public AddVehicle(IMongoClient client)
+        public ManageVehicle(IMongoClient client)
         {
             var database = client.GetDatabase("Vehicle_Renting_DB");
             _collection = database.GetCollection<Vehicle>("Vehicles");
@@ -23,6 +23,12 @@ namespace React.Services
             {
                 return false;
             }
+        }
+
+        public async Task<List<Vehicle>> GetVehicleByUserEmailAsync(string UserEmail)
+        {
+            var result = await _collection.FindAsync(x => x.UserEmailId == UserEmail);
+            return result.ToList();
         }
     }
 }

@@ -15,7 +15,8 @@ export function Login() {
     const handleSubmit = async (e) => {
         if (Email == "Admin" && Password=="Admin")
         {
-            sessionStorage.setItem("user", "admin");
+            sessionStorage.setItem("usertype", "admin");
+            sessionStorage.setItem("usertoken", "Admin");
             window.location.replace("https://localhost:44475/AdminHome");
             return;
         }
@@ -37,8 +38,10 @@ export function Login() {
 
         });
         if (res.status == 200) {
+            sessionStorage.setItem("usertype", "user");
+            sessionStorage.setItem("usertoken", Email);
             alert("Login successfull");
-            window.location.replace("https://localhost:44475/");
+            window.location.replace("https://localhost:44475/UserHome");
         }
         else if (res.status == 404) {
             alert("Invalid email or password");

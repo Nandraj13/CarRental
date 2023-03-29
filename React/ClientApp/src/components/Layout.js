@@ -2,16 +2,28 @@ import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
 import { AdminNavMenu } from './AdminNavMenu';
+import { UserNavMenu } from './UserNavMenu';
 
 export class Layout extends Component {
   static displayName = Layout.name;
 
     render() {
-        if (sessionStorage.getItem("user") == "admin") {
+        if (sessionStorage.getItem("usertype") === "admin") {
             return (
 
                 <div>
-                    <AdminNavMenu/>
+                    <AdminNavMenu />
+                    <Container tag="main">
+                        {this.props.children}
+                    </Container>
+                </div>
+            );
+        }
+        else if (sessionStorage.getItem("usertype")==="user") {
+            return (
+
+                <div>
+                    <UserNavMenu />
                     <Container tag="main">
                         {this.props.children}
                     </Container>
@@ -20,7 +32,6 @@ export class Layout extends Component {
         }
         else {
             return (
-
                 <div>
                     <NavMenu />
                     <Container tag="main">

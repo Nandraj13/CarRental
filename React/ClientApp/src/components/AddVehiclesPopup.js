@@ -1,11 +1,11 @@
 ﻿import React, { useState } from 'react';
 import FileBase64 from 'react-file-base64';
 import 'react-dropdown/style.css';
-export function AddVehicles() {
+export function AddVehicles(props) {
     const options = [
-        'Petrol','Diesel','EV','CNG'
+        'Petrol', 'Diesel', 'EV', 'CNG'
     ];
-   
+
     const [Selected, SetSelected] = useState('');
     const [Name, SetName] = useState('');
     const [Capacity, SetCapacity] = useState('');
@@ -25,10 +25,10 @@ export function AddVehicles() {
     const handleRent = (e) => {
         SetRent(e.target.value);
     }
-  
+
     const handleSubmit = async (e) => {
         console.log(Image);
-        if (Name == "" || Capacity == "" || RGnumber == "" || RentPerHour == "" || Image=="") {
+        if (Name == "" || Capacity == "" || RGnumber == "" || RentPerHour == "" || Image == "") {
             alert("All fields are mandatory");
             return;
         }
@@ -54,6 +54,7 @@ export function AddVehicles() {
         });
         if (res.status == 200) {
             alert("Vehicle Added");
+            window.location.replace("https://localhost:44475/YourVehicles");
         }
         else if (res.status == 400) {
             alert("Error while adding vehicle");
@@ -61,9 +62,9 @@ export function AddVehicles() {
     }
     return (
         <>
-            
+            <div className="popup-box">
+               <div className="box">
             <div id="main-wrapper" class="container">
-               
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
                         <div class="card border-0">
@@ -75,7 +76,7 @@ export function AddVehicles() {
                                                 <h3 class="h4 font-weight-bold text-theme">Add Vehicle</h3>
                                             </div>
 
-                                            
+
                                             <h6 class="mt-2 mb-5 font-weight-bold">Enter vehicle details</h6>
 
 
@@ -86,7 +87,7 @@ export function AddVehicles() {
                                                 <input onChange={handleCapacity} value={Capacity} type="text" class="form-control" placeholder="Capacity" required />
                                             </div>
                                             <div class="form-outline mb-4 col-sm-11">
-                                                <input onChange={handleRGnumber } value={RGnumber} type="text" class="form-control" placeholder="Registration Number" required />
+                                                <input onChange={handleRGnumber} value={RGnumber} type="text" class="form-control" placeholder="Registration Number" required />
                                             </div>
                                             <div class="form-outline mb-4 col-sm-11">
                                                 <input onChange={handleRent} value={RentPerHour} type="text" class="form-control" placeholder="Rent Per Hour" required />
@@ -97,7 +98,8 @@ export function AddVehicles() {
                                             />
                                             <label><b>RC book Image:</b> </label>
                                             <FileBase64
-                                                multiple={false} onDone={({ base64 }) => { SetRcImage(base64) }}/>
+                                                multiple={false} onDone={({ base64 }) => { SetRcImage(base64) }}
+                                            />
                                             <div class="form-outline mb-4 col-sm-11">
                                                 <select class="form-outline mb-4 col-sm-11" value={Selected} onChange={e => SetSelected(e.target.value)}>
                                                     <option></option>
@@ -107,11 +109,12 @@ export function AddVehicles() {
                                                     <option>{options[3]}</option>
                                                 </select>
                                             </div>
-                                            <button type="submit" onClick={handleSubmit} class="btn btn-theme  col-sm-5">Add</button>
+                                            <button type="submit" onClick={handleSubmit} class="btn btn-theme  col-sm-5">Add</button><br></br>
+                                            <button type="submit" onClick={props.handleClose} class="btn btn-theme  col-sm-5 mt-2">Close</button>
                                         </div>
-                                      
+
                                     </div>
-                                   
+
                                     <div class="col-lg-6 d-none d-lg-inline-block">
                                         <div class="account-block rounded-right">
                                             <div class="overlay rounded-right"></div>
@@ -130,7 +133,10 @@ export function AddVehicles() {
 
                 </div>
 
-            </div>
+                    </div>
+                </div>
+                </div>
+
         </>
-        );
+    );
 }
