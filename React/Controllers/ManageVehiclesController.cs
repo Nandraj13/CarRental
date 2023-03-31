@@ -31,5 +31,13 @@ namespace React.Controllers
             var result=await Vehicle.GetVehicleByUserEmailAsync(email);
             return result;
         }
+       
+        [HttpGet]
+        [Route("vehicle_id/{vehicleid}")]
+        public async Task<Vehicle> GetVehicleById(string vehicleid)
+        {
+            var result = await Vehicle.GetVehicleById(vehicleid);
+            return result;
+        }
     }
 }

@@ -7,6 +7,7 @@ import { AdminHome } from "./components/AdminHome";
 import { AddVehicles } from "./components/AddVehicles";
 import { UserHome } from "./components/UserHome";
 import { YourVehicles } from "./components/YourVehicles";
+import { ViewVehicle } from "./components/ViewVehicle";
 
 const AppRoutes = [
   {
@@ -45,6 +46,10 @@ const AppRoutes = [
     {
         path: '/YourVehicles',
         element: <YourVehicles/>
+    },
+    {
+        path: '/ViewVehicle',
+        element: <ViewVehicle/>
     }
 ];
 

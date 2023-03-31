@@ -6,5 +6,6 @@ namespace React.Services
     {
         Task<bool> AddNewVehicleAsync(Vehicle vehicle);
         Task<List<Vehicle>> GetVehicleByUserEmailAsync(string UserEmail);
+        Task<Vehicle> GetVehicleById(string id);
     }
 }

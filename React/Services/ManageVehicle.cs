@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using React.Entities;
 
 namespace React.Services
@@ -29,6 +30,14 @@ namespace React.Services
         {
             var result = await _collection.FindAsync(x => x.UserEmailId == UserEmail);
             return result.ToList();
+        }
+
+        [Obsolete]
+        public async Task<Vehicle> GetVehicleById(string id)
+        {
+            var objid=new ObjectId(id);
+            var result = await _collection.FindAsync(id=>id._Id==objid);
+            return result.FirstOrDefault();
         }
     }
 }
