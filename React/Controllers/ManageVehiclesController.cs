@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using React.Entities;
 using React.Services;
 
@@ -9,15 +10,16 @@ namespace React.Controllers
     [ApiController]
     public class ManageVehiclesController : ControllerBase
     {
-        private readonly IManageVehicle Vehicle;
-        public ManageVehiclesController(IManageVehicle _Vehicle)
+        private readonly IDataRepository<Vehicle> _dataRepository;
+
+        public ManageVehiclesController(IDataRepository<Vehicle> dataRepository)
         {         
-           Vehicle = _Vehicle;
+            _dataRepository = dataRepository;
         }
         [HttpPost]
         public async Task<IActionResult> AddVehicle(Vehicle vehicle)
         {
-            var result=await Vehicle.AddNewVehicleAsync(vehicle);
+            var result=await _dataRepository.AddAsync(vehicle);
             if(result==true)
             {
                 return Ok();
@@ -25,18 +27,20 @@ namespace React.Controllers
             return BadRequest();
 
         }
-        [HttpGet("{email}")]
-        public async Task<List<Vehicle>> GetVehicleByUserEmail(string email)
+
+
+        [HttpGet("{mail}")]
+        public async Task<List<Vehicle>> GetVEhiclesByID(string mail)
         {
-            var result=await Vehicle.GetVehicleByUserEmailAsync(email);
-            return result;
+            var result=await _dataRepository.GetAllByEmailAsync(mail);
+            return result.ToList();
         }
        
         [HttpGet]
         [Route("vehicle_id/{vehicleid}")]
-        public async Task<Vehicle> GetVehicleById(string vehicleid)
+        public async Task<Vehicle> GetVehicleById(ObjectId vehicleid)
         {
-            var result = await Vehicle.GetVehicleById(vehicleid);
+            var result = await _dataRepository.GetByIdAsync(vehicleid);
             return result;
         }
     }
