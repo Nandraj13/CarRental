@@ -20,6 +20,7 @@ services.AddScoped<IAddUser>(provider =>
 services.AddScoped<IManageVehicle>(provider=>new ManageVehicle(provider.GetService<IMongoClient>()));
 services.AddScoped<ICheckLogin>(provider=>
        new CheckLogin(provider.GetService<IMongoClient>()));
+services.AddScoped(typeof(IDataRepository<>), typeof(DataRepository<>));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
