@@ -1,7 +1,11 @@
 ﻿import React, { useState } from 'react';
 import FileBase64 from 'react-file-base64';
 import 'react-dropdown/style.css';
+import Joi from "joi-browser";
 export function AddVehicles(props) {
+    if (sessionStorage.getItem("usertoken") == "invalid") {
+        window.location.replace("https://localhost:44475");
+    }
     const options = [
         'Petrol', 'Diesel', 'EV', 'CNG'
     ];
@@ -25,10 +29,34 @@ export function AddVehicles(props) {
     const handleRent = (e) => {
         SetRent(e.target.value);
     }
-
+    const ValidationModel = Joi.object({
+        Name: Joi.string().required(),
+        FuelType: Joi.string().required(),
+        Capacity: Joi.number().required(),
+        RGnumber: Joi.string().max(10),
+        Image: Joi.string().required(),
+        RentPerHour: Joi.number().required(),
+        RCImage: Joi.string().required(),
+        Approved: Joi.boolean().required(),
+        UserEmailId: Joi.string().required()
+    });
     const handleSubmit = async (e) => {
-        console.log(Image);
-        if (Name == "" || Capacity == "" || RGnumber == "" || RentPerHour == "" || Image == "") {
+        const { error, value } = ValidationModel.validate({
+            Name: Name,
+            Capacity: Capacity,
+            RGnumber: RGnumber,
+            RentPerHour: RentPerHour,
+            FuelType: Selected,
+            Image: Image,
+            RCImage: RcImage,
+            Approved: false,
+            UserEmailId: sessionStorage.getItem("usertoken").toString()
+        });
+        if (error) {
+            alert(error.message);
+            return;
+        }
+        if (Name == "" || Capacity == "" || RGnumber == "" || RentPerHour == "" || Image == ""||Selected=="") {
             alert("All fields are mandatory");
             return;
         }

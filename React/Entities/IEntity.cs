@@ -11,5 +11,7 @@ namespace React.Entities
 
         [Required]
         public string UserEmailId { get; set; }
+        [Required]
+        public bool Approved { get; set; }
     }
 }

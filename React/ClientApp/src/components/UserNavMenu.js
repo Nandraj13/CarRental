@@ -34,7 +34,7 @@ export class UserNavMenu extends Component {
                                 <NavLink tag={Link} className="text-dark" to="/YourVehicles">Your Vehicles</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="">Logout</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/Logout">Logout</NavLink>
                             </NavItem>
                         </ul>
                     </Collapse>

@@ -8,6 +8,7 @@ import { AddVehicles } from "./components/AddVehicles";
 import { UserHome } from "./components/UserHome";
 import { YourVehicles } from "./components/YourVehicles";
 import { ViewVehicle } from "./components/ViewVehicle";
+import { Logout } from "./components/Logout";
 
 const AppRoutes = [
   {
@@ -50,7 +51,11 @@ const AppRoutes = [
     {
         path: '/ViewVehicle',
         element: <ViewVehicle/>
-    }
+    },
+    {
+        path: '/Logout',
+        element: <Logout/>
+        }
 ];
 
 export default AppRoutes;

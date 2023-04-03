@@ -45,6 +45,7 @@ export function Login() {
         }
         else if (res.status == 404) {
             alert("Invalid email or password");
+            sessionStorage.setItem("usertoken", "invalid");
         }
     }
     const goToRegistration = () => {

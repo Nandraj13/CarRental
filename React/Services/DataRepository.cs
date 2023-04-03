@@ -73,5 +73,12 @@ namespace React.Services
             var filter = Builders<T>.Filter.Eq(t => t._Id, id);
             await _collection.DeleteOneAsync(filter);
         }
+
+        public async Task<IEnumerable<T>> GetNotApprovedAsync()
+        {
+            var filter = Builders<T>.Filter.Eq(t => t.Approved,false);
+            var result = await _collection.FindAsync(filter);
+            return await result.ToListAsync();
+        }
     }
 }
