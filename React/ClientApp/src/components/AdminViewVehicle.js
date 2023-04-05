@@ -16,7 +16,7 @@ export function AdminViewVehicle() {
         RentPerHour: '',
         Image: '',
         RcImage: '',
-        UserEmailId: sessionStorage.getItem("usertoken"),
+        UserEmailId: sessionStorage.getItem("Useremail"),
     };
     const ValidationModel = Joi.object({
         Name: Joi.string().required(),
@@ -66,7 +66,7 @@ export function AdminViewVehicle() {
             alert("All fields are mandatory");
             return;
         }
-        const res = await fetch('https://localhost:7275/api/ManageVehicles/' + sessionStorage.getItem("IdForView"), {
+        const res = await fetch('https://localhost:7275/api/ManageVehicles/Approvevehicle/' + sessionStorage.getItem("IdForView"), {
             method: 'put',
             headers: {
                 'Accept': 'application/json',
@@ -75,7 +75,7 @@ export function AdminViewVehicle() {
             body: JSON.stringify(dataob)
         });
         if (res.status == 200) {
-            alert("Vehicle Updated");
+            alert("Vehicle Approved");
             sessionStorage.setItem("Capacity", dataob.Capacity);
             sessionStorage.setItem("Selected", dataob.FuelType);
             sessionStorage.setItem("Name", dataob.Name);
@@ -83,7 +83,7 @@ export function AdminViewVehicle() {
             sessionStorage.setItem("Image", dataob.Image);
             sessionStorage.setItem("RCImage", dataob.RcImage);
             sessionStorage.setItem("Rentperhour", dataob.RentPerHour);
-            window.location.replace("https://localhost:44475/AdminViewVehicle");
+            window.location.replace("https://localhost:44475/AdminHome");
         }
         else if (res.status == 400) {
             alert("Error while updating vehicle");
@@ -140,8 +140,8 @@ export function AdminViewVehicle() {
                                 <option>{options[3]}</option>
                             </select>
                         </div>
+                        <label>Owner: {sessionStorage.getItem("Useremail")}</label><br></br>
                         <button type="submit" onClick={handleSubmit} class="btn btn-theme  col-sm-5">Approve</button><br></br>
-                        <button type="submit" onClick={handleSubmit} class="btn btn-theme  col-sm-5" style={{ marginTop:"10px" }}>Reject</button>
                     </div>
 
                 </div>

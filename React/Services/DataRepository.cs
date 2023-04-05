@@ -86,5 +86,11 @@ namespace React.Services
             var result = await _collection.FindAsync(filter);
             return await result.ToListAsync();
         }
+
+        public async Task ApproveVehicleAsync(ObjectId id, T entity)
+        {
+            var filter = Builders<T>.Filter.Eq(t => t._Id, id);
+            await _collection.ReplaceOneAsync(filter, entity);
+        }
     }
 }

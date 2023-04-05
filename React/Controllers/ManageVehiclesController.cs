@@ -69,12 +69,29 @@ namespace React.Controllers
             }
         }
         [HttpPut("{id}")]
+       
         public async Task<IActionResult> UpdateVehicleById(ObjectId id,Vehicle vehicle)
         {
             vehicle._Id= id;
             try
             {
                 await _dataRepository.UpdateAsync(id,vehicle);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [HttpPut]
+        [Route("Approvevehicle/{id}")]
+        public async Task<IActionResult> ApproveVehicle(ObjectId id, Vehicle vehicle)
+        {
+            vehicle._Id= id;
+            vehicle.Approved = true;
+            try
+            {
+                await _dataRepository.UpdateAsync(id, vehicle);
                 return Ok();
             }
             catch (Exception ex)
