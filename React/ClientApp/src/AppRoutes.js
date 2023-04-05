@@ -9,6 +9,7 @@ import { UserHome } from "./components/UserHome";
 import { YourVehicles } from "./components/YourVehicles";
 import { ViewVehicle } from "./components/ViewVehicle";
 import { Logout } from "./components/Logout";
+import { AdminViewVehicle } from "./components/AdminViewVehicle";
 
 const AppRoutes = [
   {
@@ -55,6 +56,10 @@ const AppRoutes = [
     {
         path: '/Logout',
         element: <Logout/>
+    },
+    {
+        path: '/AdminViewVehicle',
+        element: <AdminViewVehicle/>
         }
 ];
 

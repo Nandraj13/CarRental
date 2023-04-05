@@ -12,6 +12,18 @@ export function AdminHome() {
             .then((json) => { setVehicles(json) });
 
     }, []);
+    const IdForView = (x) => {
+        sessionStorage.setItem("IdForView", x["_Id"]);
+        sessionStorage.setItem("Name", x["name"]);
+        sessionStorage.setItem("Selected", x["fuelType"]);
+        sessionStorage.setItem("Rentperhour", x["rentPerHour"]);
+        sessionStorage.setItem("Capacity", x["capacity"]);
+        sessionStorage.setItem("RGnumber", x["rGnumber"]);
+        sessionStorage.setItem("Image", x["image"]);
+        sessionStorage.setItem("RCImage", x["rcImage"]);
+        sessionStorage.setItem("Useremail", x["userEmailId"]);
+        window.location.replace("https://localhost:44475/AdminViewVehicle");
+    }
     return (
         <>
         <div>
@@ -27,7 +39,7 @@ export function AdminHome() {
 
                                 <h5 class="card-title">{vehicle["name"].toString()}</h5>
                                 <h6 class="card-title">{vehicle["rGnumber"]}</h6>
-                                <a class="btn btn-primary">View Vehicle</a>
+                                <a onClick={() => IdForView(vehicle)} class="btn btn-primary">View Vehicle</a>
                             </div>
                         </div>
                     </div>);

@@ -46,7 +46,7 @@ export function AddVehicles() {
                 FuelType: Selected,
                 Image: Image,
                 RCImage: RcImage,
-                Approved: false,
+                Approved: true,
                 UserEmailId: sessionStorage.getItem("usertoken").toString()
             })
 

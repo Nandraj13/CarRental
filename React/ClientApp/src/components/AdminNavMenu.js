@@ -31,10 +31,10 @@ export class AdminNavMenu extends Component {
                     <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                         <ul className="navbar-nav flex-grow">
                             <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/AddVehicles">Add Vechiles</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/Approvedvehicles">Approved Vehicles</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="">Modify Vehicles</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/Logout">Logout</NavLink>
                             </NavItem>
                         </ul>
                     </Collapse>

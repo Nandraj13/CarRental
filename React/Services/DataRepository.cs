@@ -80,5 +80,11 @@ namespace React.Services
             var result = await _collection.FindAsync(filter);
             return await result.ToListAsync();
         }
+        public async Task<IEnumerable<T>> GetApprovedAsync()
+        {
+            var filter = Builders<T>.Filter.Eq(t => t.Approved, true);
+            var result = await _collection.FindAsync(filter);
+            return await result.ToListAsync();
+        }
     }
 }

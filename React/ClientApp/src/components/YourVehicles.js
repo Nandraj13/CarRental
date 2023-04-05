@@ -72,8 +72,9 @@ export function YourVehicles() {
                         <img class="card-img-top" src={vehicle["image"]} height="300px" width="75px" alt="Card image cap" />
                         <div class="card-body">
                             
-                            <h5 class="card-title">{vehicle["name"].toString()}</h5>
-                            <h6 class="card-title">{vehicle["rGnumber"]}</h6>
+                            <h5 class="card-title">Vehicle Name: {vehicle["name"].toString()}</h5>
+                            <h6 class="card-title">Registration No: {vehicle["rGnumber"]}</h6>
+                            <h6 class="card-title">Approved: {vehicle["approved"]?"Yes":"No"}</h6>
                             <a onClick={() => IdForView(vehicle)} class="btn btn-primary">View Vehicle</a>
                             <a onClick={() => IdForDelete(vehicle["_Id"])} class="btn btn-primary" style={{ marginLeft:'6px' }}>Delete Vehicle</a>
                         </div>

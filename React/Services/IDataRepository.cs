@@ -8,6 +8,7 @@ namespace React.Services
         Task DeleteAsync(ObjectId id);
         Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> GetNotApprovedAsync();
+        Task<IEnumerable<T>> GetApprovedAsync();
         Task<T> GetByIdAsync(ObjectId id);
         Task UpdateAsync(ObjectId id, T entity);
         Task<IEnumerable<T>> GetAllByIdAsync(ObjectId id);
