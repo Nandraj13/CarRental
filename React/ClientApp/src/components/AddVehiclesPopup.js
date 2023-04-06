@@ -33,7 +33,7 @@ export function AddVehicles(props) {
         Name: Joi.string().required(),
         FuelType: Joi.string().required(),
         Capacity: Joi.number().required(),
-        RGnumber: Joi.string().max(10),
+        RGnumber: Joi.string().max(10).min(9),
         Image: Joi.string().required(),
         RentPerHour: Joi.number().required(),
         RCImage: Joi.string().required(),

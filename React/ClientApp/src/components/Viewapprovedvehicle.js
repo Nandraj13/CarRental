@@ -54,6 +54,41 @@ export function Viewapprovedvehicle() {
             dataob.RentPerHour = e.target.value
         }
     }
+
+    const handleSubmit = async (e) => {
+        const { error, value } = ValidationModel.validate(dataob);
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        if (dataob.Name == "" || dataob.Capacity == "" || dataob.RGnumber == "" || dataob.RentPerHour == "" || dataob.Image == "" || dataob.RcImage == "" || dataob.FuelType == "") {
+            alert("All fields are mandatory");
+            return;
+        }
+        const res = await fetch('https://localhost:7275/api/ManageVehicles/Unapprovevehicle/' + sessionStorage.getItem("IdForView"), {
+            method: 'put',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataob)
+        });
+        if (res.status == 200) {
+            alert("Vehicle Unapproved");
+            sessionStorage.setItem("Capacity", dataob.Capacity);
+            sessionStorage.setItem("Selected", dataob.FuelType);
+            sessionStorage.setItem("Name", dataob.Name);
+            sessionStorage.setItem("RGnumber", dataob.RGnumber);
+            sessionStorage.setItem("Image", dataob.Image);
+            sessionStorage.setItem("RCImage", dataob.RcImage);
+            sessionStorage.setItem("Rentperhour", dataob.RentPerHour);
+            window.location.replace("https://localhost:44475/ApprovedVehicles");
+        }
+        else if (res.status == 400) {
+            alert("Error while updating vehicle");
+        }
+    }
     return (
 
         <>
@@ -106,7 +141,7 @@ export function Viewapprovedvehicle() {
                             </select>
                         </div>
                         <label>Owner: {sessionStorage.getItem("Useremail")}</label><br></br>
-                       
+                        <button type="submit" onClick={handleSubmit} class="btn btn-theme  col-sm-5">Unapprove</button><br></br>
                     </div>
 
                 </div>

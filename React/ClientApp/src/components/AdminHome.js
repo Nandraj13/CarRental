@@ -31,6 +31,7 @@ export function AdminHome() {
         <>
         <div>
                 <h1>Welcome, Admin</h1>
+                <h2>{listofvehicles.length == 0 ? "No vehicles to be approved." : listofvehicles.length + " vehicles are pending for approval."}</h2>
             </div>
             <div>
                 {listofvehicles.length==0?"No vehicles to approve.":" "}
@@ -40,8 +41,8 @@ export function AdminHome() {
                             <img class="card-img-top" src={vehicle["image"]} height="300px" width="75px" alt="Card image cap" />
                             <div class="card-body">
 
-                                <h5 class="card-title">{vehicle["name"].toString()}</h5>
-                                <h6 class="card-title">{vehicle["rGnumber"]}</h6>
+                                <h5 class="card-title">Vehicle Name: {vehicle["name"].toString()}</h5>
+                                <h6 class="card-title">Registration No: {vehicle["rGnumber"]}</h6>
                                 <a onClick={() => IdForView(vehicle)} class="btn btn-primary">View Vehicle</a>
                             </div>
                         </div>

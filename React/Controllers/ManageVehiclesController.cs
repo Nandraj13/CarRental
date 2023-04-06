@@ -106,6 +106,22 @@ namespace React.Controllers
                 return BadRequest();
             }
         }
+        [HttpPut]
+        [Route("Unapprovevehicle/{id}")]
+        public async Task<IActionResult> UnApproveVehicle(ObjectId id, Vehicle vehicle)
+        {
+            vehicle._Id = id;
+            vehicle.Approved = false;
+            try
+            {
+                await _dataRepository.UpdateAsync(id, vehicle);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
         [HttpGet]
         [Route("ViewAvailableVehicles/{email}")]
         public async Task<List<Vehicle>> GetAvailableVehicles(string email) {

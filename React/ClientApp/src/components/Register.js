@@ -1,7 +1,6 @@
-﻿import { getJSON } from 'jquery';
+﻿
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import image from './Images/205.jpg';
+import Joi from "joi-browser";
 export function Registration() {
 
 
@@ -13,7 +12,12 @@ export function Registration() {
         setUsername(e.target.value);
         console.log(Username);
     };
-
+    var ValidationData =Joi.object({
+        Username: Joi.string().required(),
+        Password: Joi.string().required().min(8),
+        Email: Joi.string().email(),
+        Contact: Joi.string().regex(/^[0-9]{10}$/).required()
+    });
 
     const handlePassword = (e) => {
         setPassword(e.target.value);
@@ -30,6 +34,11 @@ export function Registration() {
     const handleSubmit = async (e) => {
         if (Email == "" || Password == "" || Contact == "" || Username == "") {
             alert("All fields are mandatory");
+            return;
+        }
+        const { result, error } = ValidationData.validate({ Username, Password, Email, Contact });
+        if (error) {
+            alert(error.message);
             return;
         }
         const res = await fetch("https://localhost:7275/api/Register", {

@@ -12,7 +12,6 @@ namespace React.Services
         Task<IEnumerable<T>> GetVehiclesForBooking(string email);
         Task<T> GetByIdAsync(ObjectId id);
         Task UpdateAsync(ObjectId id, T entity);
-        Task ApproveVehicleAsync(ObjectId id, T entity);
         Task<IEnumerable<T>> GetAllByIdAsync(ObjectId id);
         Task<IEnumerable<T>> GetAllByEmailAsync(string mail);
         Task<T> GetByEailAsync(string mail);

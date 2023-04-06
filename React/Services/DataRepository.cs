@@ -87,12 +87,6 @@ namespace React.Services
             return await result.ToListAsync();
         }
 
-        public async Task ApproveVehicleAsync(ObjectId id, T entity)
-        {
-            var filter = Builders<T>.Filter.Eq(t => t._Id, id);
-            await _collection.ReplaceOneAsync(filter, entity);
-        }
-
         public async Task<IEnumerable<T>> GetVehiclesForBooking(string email)
         {
             var filter = Builders<T>.Filter.Eq(t => t.Approved, true);

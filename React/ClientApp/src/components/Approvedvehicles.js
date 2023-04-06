@@ -31,6 +31,7 @@ export function Approvedvehicles() {
         <>
             <div>
                 <h1>Approved vehicles</h1>
+                <h2>{listofvehicles.length == 0 ? "No vehicles are approved yet." : listofvehicles.length + " vehicles approved."}</h2>
             </div>
             <div>
 

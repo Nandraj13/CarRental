@@ -32,7 +32,8 @@ export function UserHome() {
     return (
         <>
             <div>
-            <h1>Hey, Welcome</h1>
+                <h1>Hey, Welcome</h1>
+                <h2>{listofvehicles.length == 0 ? "No vehicles available for rent" : listofvehicles.length+" vehicles available for rent"}</h2>
             </div>
                 <div>
 

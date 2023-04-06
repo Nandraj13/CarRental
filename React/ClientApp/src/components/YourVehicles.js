@@ -8,7 +8,6 @@ export function YourVehicles() {
     }
     const [isOpen, setIsOpen] = useState(false);
     const [listofvehicles, setVehicles] = useState([]);
-    
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
@@ -62,6 +61,8 @@ export function YourVehicles() {
     return (
         <div>
             <h1>Your Vehicles</h1>
+            <h2><h2>{listofvehicles.length == 0 ? "You have not added any vehicles yet." : "You have added "+listofvehicles.length+" vehicles"}</h2></h2>
+           
             <div className="align-right">
                 <button type="submit" onClick={togglePopup} class="btn btn-primary col-sm-2">Add Vehicle</button>
                 
