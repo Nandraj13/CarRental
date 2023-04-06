@@ -2,6 +2,9 @@
 import FileBase64 from 'react-file-base64';
 import 'react-dropdown/style.css';
 export function AddVehicles() {
+    if (sessionStorage.getItem("usertoken") == "invalid") {
+        window.location.replace("https://localhost:44475");
+    }
     const options = [
         'Petrol','Diesel','EV','CNG'
     ];

@@ -76,13 +76,13 @@ namespace React.Controllers
             }
         }
         [HttpPut("{id}")]
-       
-        public async Task<IActionResult> UpdateVehicleById(ObjectId id,Vehicle vehicle)
+
+        public async Task<IActionResult> UpdateVehicleById(ObjectId id, Vehicle vehicle)
         {
-            vehicle._Id= id;
+            vehicle._Id = id;
             try
             {
-                await _dataRepository.UpdateAsync(id,vehicle);
+                await _dataRepository.UpdateAsync(id, vehicle);
                 return Ok();
             }
             catch (Exception ex)
@@ -94,7 +94,7 @@ namespace React.Controllers
         [Route("Approvevehicle/{id}")]
         public async Task<IActionResult> ApproveVehicle(ObjectId id, Vehicle vehicle)
         {
-            vehicle._Id= id;
+            vehicle._Id = id;
             vehicle.Approved = true;
             try
             {
@@ -105,6 +105,12 @@ namespace React.Controllers
             {
                 return BadRequest();
             }
+        }
+        [HttpGet]
+        [Route("ViewAvailableVehicles/{email}")]
+        public async Task<List<Vehicle>> GetAvailableVehicles(string email) {
+            var result = await _dataRepository.GetVehiclesForBooking(email);
+            return result.ToList();
         }
     }
 }

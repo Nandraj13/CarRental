@@ -1,5 +1,8 @@
 ﻿import React, { useState, useEffect } from 'react';
 export function Approvedvehicles() {
+    if (sessionStorage.getItem("usertoken") == "invalid") {
+        window.location.replace("https://localhost:44475");
+    }
     const [listofvehicles, setVehicles] = useState([]);
     useEffect(() => {
         var vehicles = fetch('https://localhost:7275/api/ManageVehicles/vehicles/approved', {

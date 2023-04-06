@@ -92,5 +92,13 @@ namespace React.Services
             var filter = Builders<T>.Filter.Eq(t => t._Id, id);
             await _collection.ReplaceOneAsync(filter, entity);
         }
+
+        public async Task<IEnumerable<T>> GetVehiclesForBooking(string email)
+        {
+            var filter = Builders<T>.Filter.Eq(t => t.Approved, true);
+            var result = await _collection.FindAsync(filter);
+            var removecurrentuser=await result.ToListAsync();
+            return removecurrentuser.Where(t => t.UserEmailId != email);
+        }
     }
 }

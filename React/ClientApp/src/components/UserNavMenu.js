@@ -31,6 +31,9 @@ export class UserNavMenu extends Component {
                     <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                         <ul className="navbar-nav flex-grow">
                             <NavItem>
+                                <NavLink tag={Link} className="text-dark" to="/UserProfile">Profile</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink tag={Link} className="text-dark" to="/YourVehicles">Your Vehicles</NavLink>
                             </NavItem>
                             <NavItem>

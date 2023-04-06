@@ -11,7 +11,7 @@ export class Home extends Component {
                
               <div>
               
-                     <h1>Welcome, Book your dream vehicle.</h1>
+                     <h1>Welcome, Vehicle Idle? Just rent it and earn!!!</h1>
 
                    
               </div>

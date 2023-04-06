@@ -1,5 +1,4 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
+
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
 import { Registration } from "./components/Register";
@@ -12,20 +11,13 @@ import { Logout } from "./components/Logout";
 import { AdminViewVehicle } from "./components/AdminViewVehicle";
 import { Approvedvehicles } from "./components/Approvedvehicles";
 import { Viewapprovedvehicle } from "./components/Viewapprovedvehicle";
+import { ViewAvailableVehicle } from "./components/ViewAvailableVehicle";
 
 const AppRoutes = [
   {
     index: true,
     element: <Home />
-  },
-  {
-    path: '/counter',
-    element: <Counter />
-  },
-  {
-    path: '/fetch-data',
-    element: <FetchData />
-    }
+  }
     ,
     {
        path: '/Login',
@@ -70,6 +62,10 @@ const AppRoutes = [
     {
         path: '/Viewapprovedvehicle',
         element: <Viewapprovedvehicle/>
+    },
+    {
+        path: '/ViewAvailableVehicle',
+        element: <ViewAvailableVehicle/>
         }
 ];
 

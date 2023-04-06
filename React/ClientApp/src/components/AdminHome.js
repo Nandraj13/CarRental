@@ -1,5 +1,8 @@
 ﻿import React, { useState,useEffect } from 'react';
 export function AdminHome() {
+    if (sessionStorage.getItem("usertoken") == "invalid") {
+        window.location.replace("https://localhost:44475");
+    }
     const [listofvehicles, setVehicles] = useState([]);
     useEffect(() => {
         var vehicles = fetch('https://localhost:7275/api/ManageVehicles/vehicles/notapproved', {
@@ -27,10 +30,10 @@ export function AdminHome() {
     return (
         <>
         <div>
-            <h1>Welcome, Admin</h1>
+                <h1>Welcome, Admin</h1>
             </div>
             <div>
-      
+                {listofvehicles.length==0?"No vehicles to approve.":" "}
                 {listofvehicles.map(vehicle => {
                     return (<div class="card" style={{ width: '25rem' }}>
                         <div class="card-body" >

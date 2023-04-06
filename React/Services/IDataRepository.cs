@@ -9,6 +9,7 @@ namespace React.Services
         Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> GetNotApprovedAsync();
         Task<IEnumerable<T>> GetApprovedAsync();
+        Task<IEnumerable<T>> GetVehiclesForBooking(string email);
         Task<T> GetByIdAsync(ObjectId id);
         Task UpdateAsync(ObjectId id, T entity);
         Task ApproveVehicleAsync(ObjectId id, T entity);
