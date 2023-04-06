@@ -55,6 +55,13 @@ namespace React.Controllers
             var result = await _dataRepository.GetNotApprovedAsync();
             return result.ToList();
         }
+        [HttpGet]
+        [Route("vehicles/approved")]
+        public async Task<List<Vehicle>> GetApprovedVehicles()
+        {
+            var result = await _dataRepository.GetApprovedAsync();
+            return result.ToList();
+        }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicleById(ObjectId Id)
         {

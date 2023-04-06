@@ -10,6 +10,8 @@ import { YourVehicles } from "./components/YourVehicles";
 import { ViewVehicle } from "./components/ViewVehicle";
 import { Logout } from "./components/Logout";
 import { AdminViewVehicle } from "./components/AdminViewVehicle";
+import { Approvedvehicles } from "./components/Approvedvehicles";
+import { Viewapprovedvehicle } from "./components/Viewapprovedvehicle";
 
 const AppRoutes = [
   {
@@ -60,6 +62,14 @@ const AppRoutes = [
     {
         path: '/AdminViewVehicle',
         element: <AdminViewVehicle/>
+    },
+    {
+        path: '/Approvedvehicles',
+        element: <Approvedvehicles/>
+    },
+    {
+        path: '/Viewapprovedvehicle',
+        element: <Viewapprovedvehicle/>
         }
 ];
 
