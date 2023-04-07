@@ -34,7 +34,7 @@ export function AdminHome() {
                 <h2>{listofvehicles.length == 0 ? "No vehicles to be approved." : listofvehicles.length + " vehicles are pending for approval."}</h2>
             </div>
             <div>
-                {listofvehicles.length==0?"No vehicles to approve.":" "}
+                
                 {listofvehicles.map(vehicle => {
                     return (<div class="card" style={{ width: '25rem' }}>
                         <div class="card-body" >
