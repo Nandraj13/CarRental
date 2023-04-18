@@ -12,7 +12,7 @@ export function ViewVehicleOwner() {
                     <div class="p-5">
                         <div class="form-outline mb-4 col-sm-11">
                             <label>Username:</label>
-                            <input defaultValue={sessionStorage.getItem("UserName")} type="text" class="form-control" placeholder="Username" name="Username" disabled/>
+                            <input defaultValue={sessionStorage.getItem("OwnerUsername")} type="text" class="form-control" placeholder="Username" name="Username" disabled/>
                         </div>
                         <div class="form-outline mb-4 col-sm-11">
                             <label>Email:</label>
@@ -20,7 +20,7 @@ export function ViewVehicleOwner() {
                         </div>
                         <div class="form-outline mb-4 col-sm-11">
                             <label>Contact number:</label>
-                            <input  defaultValue={sessionStorage.getItem("Contact")} type="text" class="form-control" placeholder="Contact" name="Contact" disabled />
+                            <input  defaultValue={sessionStorage.getItem("OwnerContact")} type="text" class="form-control" placeholder="Contact" name="Contact" disabled />
                         </div>
                     </div>
                 </div>

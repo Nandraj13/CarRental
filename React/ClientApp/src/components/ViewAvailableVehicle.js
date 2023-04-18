@@ -1,8 +1,18 @@
-﻿
+﻿import { useEffect } from 'react';
 export function ViewAvailableVehicle() {
     if (sessionStorage.getItem("usertoken") == "invalid") {
         window.location.replace("https://localhost:44475");
     }
+    useEffect(() => {
+        var user = fetch('https://localhost:7275/api/User/' + sessionStorage.getItem("Useremail"), {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => response.json())
+            .then((json) => { sessionStorage.setItem("OwnerUsername", json["userName"]); sessionStorage.setItem("OwnerContact", json["contact"]); });
+    }, []);
     const options = [
         'Petrol', 'Diesel', 'EV', 'CNG'
     ];

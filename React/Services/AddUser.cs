@@ -26,5 +26,23 @@ namespace React.Services
             return false;
             
         }
+        public async Task<NewUser> GetUserByEmail(string email)
+        {
+            var user=await _collection.FindAsync(i=>i.Email.Equals(email));
+            return user.First();
+           
+        }
+
+        public async Task<bool> UpdateUserByEmail(string email,NewUser newuser)
+        {
+            int id = Convert.ToInt32(newuser._id);
+            newuser._id = id;
+            var filter = Builders<NewUser>.Filter.Eq(t => t.Email, email);
+            var user = await _collection.ReplaceOneAsync(filter,newuser);
+            
+                return true;
+            
+           
+        }
     }
 }

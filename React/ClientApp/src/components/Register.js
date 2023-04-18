@@ -41,7 +41,7 @@ export function Registration() {
             alert(error.message);
             return;
         }
-        const res = await fetch("https://localhost:7275/api/Register", {
+        const res = await fetch("https://localhost:7275/api/User", {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

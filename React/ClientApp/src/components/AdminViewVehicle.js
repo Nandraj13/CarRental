@@ -1,10 +1,20 @@
-﻿
+﻿import React, { useEffect } from 'react';
 import FileBase64 from 'react-file-base64';
 import Joi from "joi-browser";
 export function AdminViewVehicle() {
     if (sessionStorage.getItem("usertoken") == "invalid") {
         window.location.replace("https://localhost:44475");
     }
+    useEffect(() => {
+        var user = fetch('https://localhost:7275/api/User/' + sessionStorage.getItem("Useremail"), {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => response.json())
+            .then((json) => { sessionStorage.setItem("OwnerUsername", json["userName"]); sessionStorage.setItem("OwnerContact", json["contact"]); });
+    }, []);
     const options = [
         'Petrol', 'Diesel', 'EV', 'CNG'
     ];
@@ -89,6 +99,9 @@ export function AdminViewVehicle() {
             alert("Error while updating vehicle");
         }
     }
+    const ViewOwner = () => {
+        window.location.replace("https://localhost:44475/ViewVehicleOwner");
+    }
     return (
 
         <>
@@ -140,7 +153,7 @@ export function AdminViewVehicle() {
                                 <option>{options[3]}</option>
                             </select>
                         </div>
-                        <button onClick={handleSubmit} type="submit" class="btn btn-theme  col-sm-5">View owner</button><br></br><br></br>
+                        <button onClick={ViewOwner} type="submit" class="btn btn-theme  col-sm-5">View owner</button><br></br><br></br>
                         <button type="submit" onClick={handleSubmit} class="btn btn-theme  col-sm-5">Approve</button><br></br>
                     </div>
 

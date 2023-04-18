@@ -1,10 +1,11 @@
-﻿import React, { useState,useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
+
 export function UserHome() {
     if (sessionStorage.getItem("usertoken") == "invalid") {
         window.location.replace("https://localhost:44475");
     }
     const [listofvehicles, setVehicles] = useState([]);
-    const [userdetails, setUserDetails] = useState([]);
+   // const [userdetails, setUserDetails] = useState([]);
     const [searchValue, setSearchValue] = useState("");
     useEffect(() => {
         var vehicles = fetch('https://localhost:7275/api/ManageVehicles/ViewAvailableVehicles/' + sessionStorage.getItem("usertoken"), {
@@ -15,8 +16,20 @@ export function UserHome() {
             }
         }).then((response) => response.json())
             .then((json) => { setVehicles(json) });
-        fetch('https://localhost:7275/api/ManageVehicles/ViewAvailableVehicles/')
 
+        var user= fetch('https://localhost:7275/api/User/' + sessionStorage.getItem("usertoken"), {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => response.json())
+            .then((json) => {
+                sessionStorage.setItem("LoggedUsername", json["userName"]);
+                sessionStorage.setItem("LoggedUserContact", json["contact"]);
+                sessionStorage.setItem("LoggedUserPassword", json["password"]);
+                sessionStorage.setItem("LoggedUserid", json["_id"]);
+            });
     }, []);
     const IdForView = (x) => {
         sessionStorage.setItem("IdForView", x["_Id"]);
@@ -45,6 +58,7 @@ export function UserHome() {
                     placeholder="Enter vehicle name"
                     onChange={e => setSearchValue(e.target.value)}
                 />
+              
             </div>
             <div>
 
