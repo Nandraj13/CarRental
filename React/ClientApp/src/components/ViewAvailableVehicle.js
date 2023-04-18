@@ -42,6 +42,12 @@ export function ViewAvailableVehicle() {
             dataob.RentPerHour = e.target.value
         }
     }
+    const handleSubmit = () => {
+        window.location.replace("https://localhost:44475/GetVehicleOnRentScreen");
+    }
+    const ViewOwner = () => {
+        window.location.replace("https://localhost:44475/ViewVehicleOwner");
+    }
     return (
 
         <>
@@ -93,8 +99,8 @@ export function ViewAvailableVehicle() {
                                 <option>{options[3]}</option>
                             </select>
                         </div>
-                        <label>Owner: {sessionStorage.getItem("Useremail")}</label><br></br>
-                        <button type="submit" class="btn btn-theme  col-sm-5">Get on rent</button>
+                        <button onClick={ViewOwner} type="submit" class="btn btn-theme  col-sm-5">View owner</button><br></br><br></br>
+                        <button onClick={handleSubmit} type="submit" class="btn btn-theme  col-sm-5">Get on rent</button>
                     </div>
 
                 </div>

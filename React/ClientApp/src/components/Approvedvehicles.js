@@ -4,7 +4,7 @@ export function Approvedvehicles() {
         window.location.replace("https://localhost:44475");
     }
     const [listofvehicles, setVehicles] = useState([]);
-    const [searchValue, setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState("");
 
     useEffect(() => {
         var vehicles = fetch('https://localhost:7275/api/ManageVehicles/vehicles/approved', {

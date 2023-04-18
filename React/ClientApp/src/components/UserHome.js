@@ -5,6 +5,7 @@ export function UserHome() {
     }
     const [listofvehicles, setVehicles] = useState([]);
     const [userdetails, setUserDetails] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
     useEffect(() => {
         var vehicles = fetch('https://localhost:7275/api/ManageVehicles/ViewAvailableVehicles/' + sessionStorage.getItem("usertoken"), {
             method: 'get',
@@ -35,9 +36,19 @@ export function UserHome() {
                 <h1>Hey, Welcome</h1>
                 <h2>{listofvehicles.length == 0 ? "No vehicles available for rent" : listofvehicles.length+" vehicles available for rent"}</h2>
             </div>
-                <div>
+            <div>
+                <h6>Search:</h6>
+                <input
+                    type="text"
+                    name="search"
+                    value={searchValue}
+                    placeholder="Enter vehicle name"
+                    onChange={e => setSearchValue(e.target.value)}
+                />
+            </div>
+            <div>
 
-                    {listofvehicles.map(vehicle => {
+                {listofvehicles.filter(vehicle => vehicle["name"].match(new RegExp(searchValue, "i"))).map(vehicle => {
                         return (<div class="card" style={{ width: '25rem' }}>
                             <div class="card-body" >
                                 <img class="card-img-top" src={vehicle["image"]} height="300px" width="75px" alt="Card image cap" />

@@ -87,6 +87,7 @@ export function AddVehicles(props) {
         else if (res.status == 400) {
             alert("Error while adding vehicle");
         }
+      
     }
     return (
         <>
@@ -120,17 +121,17 @@ export function AddVehicles(props) {
                                             <div class="form-outline mb-4 col-sm-11">
                                                 <input onChange={handleRent} value={RentPerHour} type="text" class="form-control" placeholder="Rent Per Hour" required />
                                             </div>
-                                            <label><b>Vehicle Image:</b> </label>
-                                            <FileBase64
-                                                multiple={false} onDone={({ base64 }) => { SetImage(base64) }}
+                                                    <label><b>Vehicle Image:</b> </label>
+                                                    <FileBase64 className="file"
+                                                        multiple={false} onDone={({ base64 }) => { SetImage(base64)}}
                                             />
-                                            <label><b>RC book Image:</b> </label>
-                                            <FileBase64
-                                                multiple={false} onDone={({ base64 }) => { SetRcImage(base64) }}
+                                                    <label><b>RC book Image:</b> </label>
+                                                    <FileBase64 className="file"
+                                                        multiple={false} onDone={({ base64 }) => { SetRcImage(base64)}}
                                             />
                                             <div class="form-outline mb-4 col-sm-11">
                                                 <select class="form-outline mb-4 col-sm-11" value={Selected} onChange={e => SetSelected(e.target.value)}>
-                                                    <option></option>
+                                                  
                                                     <option>{options[0]}</option>
                                                     <option>{options[1]}</option>
                                                     <option>{options[2]}</option>

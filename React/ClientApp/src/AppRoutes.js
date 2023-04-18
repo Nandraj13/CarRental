@@ -12,6 +12,9 @@ import { AdminViewVehicle } from "./components/AdminViewVehicle";
 import { Approvedvehicles } from "./components/Approvedvehicles";
 import { Viewapprovedvehicle } from "./components/Viewapprovedvehicle";
 import { ViewAvailableVehicle } from "./components/ViewAvailableVehicle";
+import { GetVehicleOnRentScreen } from "./components/GetVehicleOnRentScreen";
+import { UserProfile } from "./components/UserProfile";
+import { ViewVehicleOwner } from "./components/ViewVehicleOwner";
 
 const AppRoutes = [
   {
@@ -66,7 +69,19 @@ const AppRoutes = [
     {
         path: '/ViewAvailableVehicle',
         element: <ViewAvailableVehicle/>
-        }
+    },
+    {
+        path: '/GetVehicleOnRentScreen',
+        element: <GetVehicleOnRentScreen/>
+    },
+    {
+        path: '/UserProfile',
+        element: <UserProfile/>
+    },
+    {
+        path: '/ViewVehicleOwner',
+        element: <ViewVehicleOwner/>
+    }
 ];
 
 export default AppRoutes;

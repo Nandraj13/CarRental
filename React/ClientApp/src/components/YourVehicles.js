@@ -8,6 +8,7 @@ export function YourVehicles() {
     }
     const [isOpen, setIsOpen] = useState(false);
     const [listofvehicles, setVehicles] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
@@ -67,7 +68,19 @@ export function YourVehicles() {
                 <button type="submit" onClick={togglePopup} class="btn btn-primary col-sm-2">Add Vehicle</button>
                 
             </div>
-            {listofvehicles.map(vehicle => {
+            <div>
+                <h6>Search:</h6>
+                <input
+                    type="text"
+                    name="search"
+                    value={searchValue}
+                    placeholder="Enter vehicle name"
+                    onChange={e => setSearchValue(e.target.value)}
+                />
+            </div>
+            <div>
+
+                {listofvehicles.filter(vehicle => vehicle["name"].match(new RegExp(searchValue, "i"))).map(vehicle => {
                 return (<div class="card" style={{ width: '25rem' }}>
                     <div class="card-body" >
                         <img class="card-img-top" src={vehicle["image"]} height="300px" width="75px" alt="Card image cap" />
@@ -85,8 +98,8 @@ export function YourVehicles() {
             <div className="margin">
                 {isOpen && <AddVehicles handleClose={togglePopup}/>}
             </div>
-         
-            
+
+            </div>
         </div>
     );
 }

@@ -140,7 +140,7 @@ export function AdminViewVehicle() {
                                 <option>{options[3]}</option>
                             </select>
                         </div>
-                        <label>Owner: {sessionStorage.getItem("Useremail")}</label><br></br>
+                        <button onClick={handleSubmit} type="submit" class="btn btn-theme  col-sm-5">View owner</button><br></br><br></br>
                         <button type="submit" onClick={handleSubmit} class="btn btn-theme  col-sm-5">Approve</button><br></br>
                     </div>
 

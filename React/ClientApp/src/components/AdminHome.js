@@ -4,6 +4,7 @@ export function AdminHome() {
         window.location.replace("https://localhost:44475");
     }
     const [listofvehicles, setVehicles] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
     useEffect(() => {
         var vehicles = fetch('https://localhost:7275/api/ManageVehicles/vehicles/notapproved', {
             method: 'get',
@@ -34,8 +35,18 @@ export function AdminHome() {
                 <h2>{listofvehicles.length == 0 ? "No vehicles to be approved." : listofvehicles.length + " vehicles are pending for approval."}</h2>
             </div>
             <div>
-                
-                {listofvehicles.map(vehicle => {
+                <h6>Search:</h6>
+                <input
+                    type="text"
+                    name="search"
+                    value={searchValue}
+                    placeholder="Enter vehicle name"
+                    onChange={e => setSearchValue(e.target.value)}
+                />
+            </div>
+                <div>
+
+                    {listofvehicles.filter(vehicle => vehicle["name"].match(new RegExp(searchValue, "i"))).map(vehicle => {
                     return (<div class="card" style={{ width: '25rem' }}>
                         <div class="card-body" >
                             <img class="card-img-top" src={vehicle["image"]} height="300px" width="75px" alt="Card image cap" />
