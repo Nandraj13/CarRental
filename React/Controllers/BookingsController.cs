@@ -28,18 +28,13 @@ namespace React.Controllers
 
             if (vehicle == null)
             {
-                return BadRequest("Vehicle not found.");
+                return NotFound("Vehicle not found.");
             }
 
             if (await CheckDateOverlap(booking.VehicleId, booking.PickupDate, booking.ReturnDate))
             {
                 return BadRequest("Vehicle already booked for the selected dates.");
             }
-
-            var hours = (booking.ReturnDate - booking.PickupDate).TotalHours;
-            booking.TotalPrice = (decimal)hours * vehicle.RentPerHour;
-
-
             await _bookings.InsertOneAsync(booking);
 
             return Ok(booking);

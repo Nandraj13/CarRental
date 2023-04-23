@@ -7,7 +7,7 @@ namespace React.Entities
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public ObjectId Id { get; set; }
 
         [BsonRepresentation(BsonType.ObjectId)]
         public string VehicleId { get; set; }
@@ -16,13 +16,10 @@ namespace React.Entities
 
         public DateTime ReturnDate { get; set; }
 
-        public string CustomerName { get; set; }
-
         public string CustomerEmail { get; set; }
 
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string UserId { get; set; }
+        public string OwnerEmail { get; set; }
 
-        public decimal TotalPrice { get; set; }
+        public decimal TotalRent { get; set; }
     }
 }

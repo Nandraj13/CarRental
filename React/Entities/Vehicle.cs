@@ -40,14 +40,7 @@ namespace React.Entities
         [Required]
         public string UserEmailId { get; set; }
 
-
-        public List<BookedDate> BookedDates { get; set; }
     }
 
-    public class BookedDate
-    {
-        public DateTime PickupDate { get; set; }
 
-        public DateTime ReturnDate { get; set; }
-    }
 }

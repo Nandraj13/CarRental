@@ -10,7 +10,7 @@ export function AddVehicles(props) {
         'Petrol', 'Diesel', 'EV', 'CNG'
     ];
 
-    const [Selected, SetSelected] = useState('');
+    const [Selected, SetSelected] = useState('Petrol');
     const [Name, SetName] = useState('');
     const [Capacity, SetCapacity] = useState('');
     const [RGnumber, SetRGnumber] = useState('');
