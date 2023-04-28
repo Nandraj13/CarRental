@@ -1,5 +1,4 @@
-﻿
-export function ViewVehicleOwner() {
+﻿export function ViewVehicleOwner() {
     if (sessionStorage.getItem("usertoken") == "invalid") {
         window.location.replace("https://localhost:44475");
     }

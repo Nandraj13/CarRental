@@ -66,9 +66,9 @@ export function ViewAvailableVehicle() {
                     <div class="carousel-item active" style={{ height: '400px', width: '600px' }}>
                         <img src={sessionStorage.getItem("Image")} class="d-block w-100" alt="..." />
                     </div>
-                    <div class="carousel-item" style={{ height: '400px', width: '600px' }}>
-                        <img src={sessionStorage.getItem("RCImage")} class="d-block w-100" alt="..." />
-                    </div>
+                    {/*<div class="carousel-item" style={{ height: '400px', width: '600px' }}>*/}
+                    {/*    <img src={sessionStorage.getItem("RCImage")} class="d-block w-100" alt="..." />*/}
+                    {/*</div>*/}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
