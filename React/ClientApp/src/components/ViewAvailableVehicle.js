@@ -1,5 +1,7 @@
 ﻿import { useEffect } from 'react';
 export function ViewAvailableVehicle() {
+    sessionStorage.setItem("ed", "");
+    sessionStorage.setItem("sd", "");
     if (sessionStorage.getItem("usertoken") == "invalid") {
         window.location.replace("https://localhost:44475");
     }

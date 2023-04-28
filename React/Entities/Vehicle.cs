@@ -5,9 +5,10 @@ using System.Reflection.Metadata;
 
 namespace React.Entities
 {
-    public class Vehicle :IEntity
+    public class Vehicle : IEntity
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _Id { get; set; }
 
         [Required]
@@ -15,7 +16,7 @@ namespace React.Entities
 
         [Required]
         //[BsonRepresentation(BsonType.Binary)]
-        public string Image { get;set; }
+        public string Image { get; set; }
 
         [Required]
         //[BsonRepresentation(BsonType.Binary)]
@@ -28,7 +29,7 @@ namespace React.Entities
         public string RGnumber { get; set; }
 
         [Required]
-        public string RentPerHour { get; set; }
+        public int RentPerHour { get; set; }
 
         [Required]
         public string FuelType { get; set; }
@@ -38,5 +39,8 @@ namespace React.Entities
 
         [Required]
         public string UserEmailId { get; set; }
+
     }
+
+
 }
