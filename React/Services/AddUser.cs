@@ -32,6 +32,16 @@ namespace React.Services
             return user.First();
            
         }
+        public async Task<bool> CheckUser(string email)
+        {
+            var user = await _collection.FindAsync(i => i.Email==email);
+            if(user.FirstOrDefault() == null)
+            {
+                return false;
+            }
+            return true;
+
+        }
 
         public async Task<bool> UpdateUserByEmail(string email,NewUser newuser)
         {

@@ -88,7 +88,7 @@ export function GetVehicleOnRentScreen() {
                             <input type="date" name="enddate" onChange={(e) => handleEndDate(e)} min={new Date().toISOString().split('T')[0]} />
                         </div>
                         <div class="form-outline mb-4 col-sm-11">
-                            <label>Rent per hour:</label>
+                            <label>Total rent:</label>
                             <input id="dater" onChange={handleRent} defaultValue={rent} type="text" class="form-control" placeholder="Rent per hour" name="Rent" disabled />
                         </div>
                         <button onClick={handleSubmit} type="submit" class="btn btn-theme  col-sm-9">Confirm booking</button>

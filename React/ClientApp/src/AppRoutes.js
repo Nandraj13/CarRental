@@ -15,7 +15,9 @@ import { ViewAvailableVehicle } from "./components/ViewAvailableVehicle";
 import { GetVehicleOnRentScreen } from "./components/GetVehicleOnRentScreen";
 import { UserProfile } from "./components/UserProfile";
 import { ViewVehicleOwner } from "./components/ViewVehicleOwner";
-
+import { Forgotpassword } from "./components/Forgotpassword";
+import { Submitotp } from "./components/Submitotp";
+import { Updatepassword } from "./components/Updatepassword";
 const AppRoutes = [
   {
     index: true,
@@ -81,7 +83,19 @@ const AppRoutes = [
     {
         path: '/ViewVehicleOwner',
         element: <ViewVehicleOwner/>
-    }
+    },
+    {
+        path: '/Forgotpassword',
+        element:<Forgotpassword/>
+    },
+    {
+        path: '/Submitotp',
+        element: <Submitotp/>
+    },
+    {
+        path: "/Updatepassword",
+        element:<Updatepassword/>
+        }
 ];
 
 export default AppRoutes;

@@ -51,6 +51,9 @@ export function Login() {
     const goToRegistration = () => {
         window.location.replace("https://localhost:44475/Registration");
     }
+    const goToForgotPassword = () => {
+        window.location.replace("https://localhost:44475/Forgotpassword");
+    }
     return (
 
         <div id="main-wrapper" class="container">
@@ -96,6 +99,7 @@ export function Login() {
 
 
                     <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a onClick={goToRegistration} class="text-primary ml-1">register</a></p>
+                    <p class="text-muted text-center mt-3 mb-0">Don't remember password? <a onClick={goToForgotPassword} class="text-primary ml-1">forgot password?</a></p>
 
 
                 </div>

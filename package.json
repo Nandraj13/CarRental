@@ -8,6 +8,7 @@
     "bson": "^5.1.0",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
+    "emailjs-com": "^3.2.0",
     "install": "^0.13.0",
     "joi": "^17.9.1",
     "joi-browser": "^13.4.0",

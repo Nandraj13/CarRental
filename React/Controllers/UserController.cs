@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using React.Entities;
 using React.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace React.Controllers
 {
@@ -37,6 +38,20 @@ namespace React.Controllers
             var res=await _addUser.GetUserByEmail(email);
             return res;
         }
+        [HttpGet("Checkuser/{email}")]
+        public async Task<IActionResult> CheckUser(string email)
+        {
+            var res = await _addUser.CheckUser(email);
+            if (res == true)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpPut("UpdateUser/{email}")]
         public async Task<IActionResult> UpdateUserByEmail(NewUser newUser,string email)
         {
@@ -45,5 +60,15 @@ namespace React.Controllers
             { return Ok(); }
             return BadRequest();
         }
-     }
+        [HttpPut("UpdatePassword/{email}")]
+        public async Task<IActionResult> UpdatePasswordByEmail([FromBody] PasswordDto Password,string email)
+        {
+            var newUser = await _addUser.GetUserByEmail(email);
+            newUser.Password=Password.Password;
+            var res = await _addUser.UpdateUserByEmail(email, newUser);
+            if (res == true)
+            { return Ok(); }
+            return BadRequest();
+        }
+    }
 }
