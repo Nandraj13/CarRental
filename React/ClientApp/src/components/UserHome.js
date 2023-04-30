@@ -4,6 +4,11 @@ export function UserHome() {
     if (sessionStorage.getItem("usertoken") == "invalid") {
         window.location.replace("https://localhost:44475");
     }
+    const options = [
+        'name', 'capacity', 'fuelType'
+    ];
+
+    const [Selected, SetSelected] = useState('name');
     const [listofvehicles, setVehicles] = useState([]);
    // const [userdetails, setUserDetails] = useState([]);
     const [searchValue, setSearchValue] = useState("");
@@ -49,20 +54,28 @@ export function UserHome() {
                 <h1>Hey, Welcome</h1>
                 <h2>{listofvehicles.length == 0 ? "No vehicles available for rent" : listofvehicles.length+" vehicles available for rent"}</h2>
             </div>
+            <h6>Search:</h6>
+            <div class="form-outline  col-sm-1">
+                <select class="form-outline col-sm-11" value={Selected} onChange={e => SetSelected(e.target.value)} >
+                    <option>{options[0]}</option>
+                    <option>{options[1]}</option>
+                    <option>{options[2]}</option>
+                </select>
+            </div>
             <div>
-                <h6>Search:</h6>
+                
                 <input
                     type="text"
                     name="search"
                     value={searchValue}
-                    placeholder="Enter vehicle name"
+                    placeholder="Enter search value"
                     onChange={e => setSearchValue(e.target.value)}
                 />
               
             </div>
             <div>
 
-                {listofvehicles.filter(vehicle => vehicle["name"].match(new RegExp(searchValue, "i"))).map(vehicle => {
+                {listofvehicles.filter(vehicle => vehicle[Selected].match(new RegExp(searchValue, "i"))).map(vehicle => {
                         return (<div class="card" style={{ width: '25rem' }}>
                             <div class="card-body" >
                                 <img class="card-img-top" src={vehicle["image"]} height="300px" width="75px" alt="Card image cap" />

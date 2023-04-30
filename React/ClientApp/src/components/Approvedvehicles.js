@@ -5,7 +5,11 @@ export function Approvedvehicles() {
     }
     const [listofvehicles, setVehicles] = useState([]);
     const [searchValue, setSearchValue] = useState("");
+    const options = [
+        'name', 'capacity', 'fuelType'
+    ];
 
+    const [Selected, SetSelected] = useState('name');
     useEffect(() => {
         var vehicles = fetch('https://localhost:7275/api/ManageVehicles/vehicles/approved', {
             method: 'get',
@@ -36,16 +40,23 @@ export function Approvedvehicles() {
                 <h2>{listofvehicles.length == 0 ? "No vehicles are approved yet." : listofvehicles.length + " vehicles approved."}</h2>
             </div><br></br>
             <h6>Search:</h6>
+            <div class="form-outline  col-sm-1">
+                <select class="form-outline col-sm-11" value={Selected} onChange={e => SetSelected(e.target.value)} >
+                    <option>{options[0]}</option>
+                    <option>{options[1]}</option>
+                    <option>{options[2]}</option>
+                </select>
+            </div>
             <input
                 type="text"
                 name="search"
                 value={searchValue}
-                placeholder="Enter vehicle name"
+                placeholder="Enter search value"
                 onChange={e => setSearchValue(e.target.value)}
             />
             <div>
 
-                {listofvehicles.filter(vehicle => vehicle["name"].match(new RegExp(searchValue, "i"))).map(vehicle => {
+                {listofvehicles.filter(vehicle => vehicle[Selected].match(new RegExp(searchValue, "i"))).map(vehicle => {
                     return (<div class="card" style={{ width: '25rem' }}>
                         <div class="card-body" >
                             <img class="card-img-top" src={vehicle["image"]} height="300px" width="75px" alt="Card image cap" />
