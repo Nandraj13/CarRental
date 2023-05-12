@@ -16,6 +16,8 @@ export function AddVehicles(props) {
     const [RGnumber, SetRGnumber] = useState('');
     const [RentPerHour, SetRent] = useState('');
     const [Image, SetImage] = useState('');
+    const [City, SetCity] = useState('');
+
     const [RcImage, SetRcImage] = useState('');
     const handleName = (e) => {
         SetName(e.target.value);
@@ -29,11 +31,16 @@ export function AddVehicles(props) {
     const handleRent = (e) => {
         SetRent(e.target.value);
     }
+    const handleCity = (e) => {
+        SetCity(e.target.value);
+    }
+
     const ValidationModel = Joi.object({
         Name: Joi.string().required(),
         FuelType: Joi.string().required(),
         Capacity: Joi.number().required(),
         RGnumber: Joi.string().max(10).min(9),
+        City: Joi.string().required(),
         Image: Joi.string().required(),
         RentPerHour: Joi.number().required(),
         RCImage: Joi.string().required(),
@@ -48,6 +55,7 @@ export function AddVehicles(props) {
             RentPerHour: RentPerHour,
             FuelType: Selected,
             Image: Image,
+            City: City,
             RCImage: RcImage,
             Approved: false,
             UserEmailId: sessionStorage.getItem("usertoken").toString()
@@ -60,7 +68,7 @@ export function AddVehicles(props) {
             alert("All fields are mandatory");
             return;
         }
-        const res = await fetch('https://localhost:7275/api/ManageVehicles', {
+        const res = await fetch('https://localhost:7275/api/ManageVehiclesV2', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -73,6 +81,7 @@ export function AddVehicles(props) {
                 RentPerHour: RentPerHour,
                 FuelType: Selected,
                 Image: Image,
+                City: City,
                 RCImage: RcImage,
                 Approved: false,
                 UserEmailId: sessionStorage.getItem("usertoken").toString()
@@ -116,28 +125,30 @@ export function AddVehicles(props) {
                                                 <input onChange={handleCapacity} value={Capacity} type="text" class="form-control" placeholder="Capacity" required />
                                             </div>
                                             <div class="form-outline mb-4 col-sm-11">
+                                                <input onChange={handleCity} value={City} type="text" class="form-control" placeholder="City" required />
+                                            </div>
+                                            <div class="form-outline mb-4 col-sm-11">
                                                 <input onChange={handleRGnumber} value={RGnumber} type="text" class="form-control" placeholder="Registration Number" required />
                                             </div>
                                             <div class="form-outline mb-4 col-sm-11">
                                                 <input onChange={handleRent} value={RentPerHour} type="text" class="form-control" placeholder="Rent Per Hour" required />
-                                            </div>
+                                                    </div>
+                                                    <label><b>Fuel type:</b> </label>
+                                                    <div class="form-outline mb-4 col-sm-11">
+                                                        <select class="form-outline mb-4 col-sm-11" value={Selected} onChange={e => SetSelected(e.target.value)}>
+                                                            <option>{options[0]}</option>
+                                                            <option>{options[1]}</option>
+                                                            <option>{options[2]}</option>
+                                                            <option>{options[3]}</option>
+                                                        </select>
+                                                    </div>
                                                     <label><b>Vehicle Image:</b> </label>
                                                     <FileBase64 className="file"
-                                                        multiple={false} onDone={({ base64 }) => { SetImage(base64)}}
-                                            />
+                                                        multiple={false} onDone={({ base64 }) => { SetImage(base64)}}/>
                                                     <label><b>RC book Image:</b> </label>
                                                     <FileBase64 className="file"
-                                                        multiple={false} onDone={({ base64 }) => { SetRcImage(base64)}}
-                                            />
-                                            <div class="form-outline mb-4 col-sm-11">
-                                                <select class="form-outline mb-4 col-sm-11" value={Selected} onChange={e => SetSelected(e.target.value)}>
-                                                  
-                                                    <option>{options[0]}</option>
-                                                    <option>{options[1]}</option>
-                                                    <option>{options[2]}</option>
-                                                    <option>{options[3]}</option>
-                                                </select>
-                                            </div>
+                                                        multiple={false} onDone={({ base64 }) => { SetRcImage(base64)}}/>
+                                           
                                             <button type="submit" onClick={handleSubmit} class="btn btn-theme  col-sm-5">Add</button><br></br>
                                             <button type="submit" onClick={props.handleClose} class="btn btn-theme  col-sm-5 mt-2">Close</button>
                                         </div>

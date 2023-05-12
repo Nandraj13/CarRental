@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using React.Entities;
+using React.Services;
 
 namespace React.Controllers
 {
@@ -13,6 +14,7 @@ namespace React.Controllers
         private readonly IMongoCollection<Vehicle> _vehicles;
         private readonly IMongoCollection<Booking> _bookings;
 
+        public IDataRepository<Booking> _dataRepository { get; }
 
         public BookingsController(IMongoClient client)
         {
@@ -30,7 +32,10 @@ namespace React.Controllers
             {
                 return NotFound("Vehicle not found.");
             }
-
+            if(booking.PickupDate>booking.ReturnDate)
+            {
+                return BadRequest("Invalid booking dates");
+            }    
             if (await CheckDateOverlap(booking.VehicleId, booking.PickupDate, booking.ReturnDate))
             {
                 return BadRequest("Vehicle already booked for the selected dates.");
@@ -52,6 +57,15 @@ namespace React.Controllers
             return overlappingBookings.Any();
         }
 
+        [HttpGet]
+        public async Task<List<Booking>> GetBookings([FromQuery] string email)
+        {
+            var bookings = await _bookings.FindAsync(FilterDefinition<Booking>.Empty);
+
+            var result=await bookings.ToListAsync();
+            return result.Where(b => b.CustomerEmail.Equals(email)).ToList();
+
+        }
       
     }
 
