@@ -24,6 +24,7 @@ export function AdminViewVehicle() {
         Capacity: '',
         RGnumber: '',
         RentPerHour: '',
+        City: '',
         Image: '',
         RcImage: '',
         UserEmailId: sessionStorage.getItem("Useremail"),
@@ -33,6 +34,7 @@ export function AdminViewVehicle() {
         FuelType: Joi.string().required(),
         Capacity: Joi.number().required(),
         RGnumber: Joi.string().max(10),
+        City: Joi.string().required(),
         Image: Joi.string().required(),
         RentPerHour: Joi.number().required(),
         RcImage: Joi.string().required(),
@@ -43,6 +45,7 @@ export function AdminViewVehicle() {
     dataob.FuelType = sessionStorage.getItem("Selected");
     dataob.Name = sessionStorage.getItem("Name");
     dataob.RGnumber = sessionStorage.getItem("RGnumber");
+    dataob.City = sessionStorage.getItem("City");
     dataob.Image = sessionStorage.getItem("Image");
     dataob.RcImage = sessionStorage.getItem("RCImage");
     dataob.RentPerHour = sessionStorage.getItem("Rentperhour");
@@ -60,6 +63,9 @@ export function AdminViewVehicle() {
         else if (e.target.name === "Selected") {
             dataob.FuelType = e.target.value
         }
+        else if (e.target.name === "City") {
+            dataob.City = e.target.value
+        }
         else {
             dataob.RentPerHour = e.target.value
         }
@@ -72,11 +78,11 @@ export function AdminViewVehicle() {
             return;
         }
 
-        if (dataob.Name == "" || dataob.Capacity == "" || dataob.RGnumber == "" || dataob.RentPerHour == "" || dataob.Image == "" || dataob.RcImage == "" || dataob.FuelType == "") {
+        if (dataob.Name == "" || dataob.Capacity == "" || dataob.City == "" || dataob.RGnumber == "" || dataob.RentPerHour == "" || dataob.Image == "" || dataob.RcImage == "" || dataob.FuelType == "") {
             alert("All fields are mandatory");
             return;
         }
-        const res = await fetch('https://localhost:7275/api/ManageVehicles/Approvevehicle/' + sessionStorage.getItem("IdForView"), {
+        const res = await fetch('https://localhost:7275/api/ManageVehiclesV2/Approvevehicle/' + sessionStorage.getItem("IdForView"), {
             method: 'put',
             headers: {
                 'Accept': 'application/json',
@@ -90,6 +96,7 @@ export function AdminViewVehicle() {
             sessionStorage.setItem("Selected", dataob.FuelType);
             sessionStorage.setItem("Name", dataob.Name);
             sessionStorage.setItem("RGnumber", dataob.RGnumber);
+            sessionStorage.setItem("City", dataob.City);
             sessionStorage.setItem("Image", dataob.Image);
             sessionStorage.setItem("RCImage", dataob.RcImage);
             sessionStorage.setItem("Rentperhour", dataob.RentPerHour);
@@ -137,6 +144,10 @@ export function AdminViewVehicle() {
                         <div class="form-outline mb-4 col-sm-11">
                             <label>Registration number:</label>
                             <input onChange={(e) => onValChange(e)} defaultValue={sessionStorage.getItem("RGnumber")} type="text" class="form-control" placeholder="Registration Number" name="RGnumber" disabled />
+                        </div>
+                        <div class="form-outline mb-4 col-sm-11">
+                            <label>City:</label>
+                            <input onChange={(e) => onValChange(e)} defaultValue={sessionStorage.getItem("City")} type="text" class="form-control" placeholder="City" name="City" disabled />
                         </div>
                         <div class="form-outline mb-4 col-sm-11">
                             <label>Rent per hour:</label>

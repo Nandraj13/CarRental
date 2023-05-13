@@ -11,7 +11,7 @@ export function Approvedvehicles() {
 
     const [Selected, SetSelected] = useState('name');
     useEffect(() => {
-        var vehicles = fetch('https://localhost:7275/api/ManageVehicles/vehicles/approved', {
+        var vehicles = fetch('https://localhost:7275/api/ManageVehiclesV2/vehicles/approved', {
             method: 'get',
             headers: {
                 'Accept': 'application/json',

@@ -77,7 +77,7 @@ export function Viewapprovedvehicle() {
             alert("All fields are mandatory");
             return;
         }
-        const res = await fetch('https://localhost:7275/api/ManageVehicles/Unapprovevehicle/' + sessionStorage.getItem("IdForView"), {
+        const res = await fetch('https://localhost:7275/api/ManageVehiclesV2/Unapprovevehicle/' + sessionStorage.getItem("IdForView"), {
             method: 'put',
             headers: {
                 'Accept': 'application/json',

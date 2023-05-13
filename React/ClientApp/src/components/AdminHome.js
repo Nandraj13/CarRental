@@ -11,7 +11,7 @@ export function AdminHome() {
     const [listofvehicles, setVehicles] = useState([]);
     const [searchValue, setSearchValue] = useState("");
     useEffect(() => {
-        var vehicles = fetch('https://localhost:7275/api/ManageVehicles/vehicles/notapproved', {
+        var vehicles = fetch('https://localhost:7275/api/ManageVehiclesV2/vehicles/notapproved', {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -27,6 +27,7 @@ export function AdminHome() {
         sessionStorage.setItem("Selected", x["fuelType"]);
         sessionStorage.setItem("Rentperhour", x["rentPerHour"]);
         sessionStorage.setItem("Capacity", x["capacity"]);
+        sessionStorage.setItem("City", x["city"]);
         sessionStorage.setItem("RGnumber", x["rGnumber"]);
         sessionStorage.setItem("Image", x["image"]);
         sessionStorage.setItem("RCImage", x["rcImage"]);

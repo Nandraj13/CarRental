@@ -19,7 +19,7 @@ export function YourVehicles() {
     }
     //get user vehicle api call
     useEffect(() => {
-        var vehicles = fetch('https://localhost:7275/api/ManageVehicles/' + sessionStorage.getItem("usertoken"), {
+        var vehicles = fetch('https://localhost:7275/api/ManageVehiclesV2/' + sessionStorage.getItem("usertoken"), {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -31,7 +31,7 @@ export function YourVehicles() {
     }, []);
     //vehicle delete api call
     const IdForDelete = async (x) => {
-        var result = await fetch('https://localhost:7275/api/ManageVehicles/' + x, {
+        var result = await fetch('https://localhost:7275/api/ManageVehiclesV2/' + x, {
             method: 'delete',
             headers: {
                 'Accept': 'application/json',
